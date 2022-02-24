@@ -3,6 +3,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Quadratic {
+    LTPanel aPanel;
+    LTPanel bPanel;
+    LTPanel cPanel;
+    JPanel buttonPanel;
+    LTPanel answerPanel;
+    JLabel formulaLabel;
+    JButton clearButton;
+    JButton calculateButton;
     public Quadratic() {
         // Set up the frame
         JFrame frame = new JFrame("Quadratic Formula");
@@ -11,11 +19,11 @@ public class Quadratic {
 
         // Set up and add the panels
         JPanel formulaPanel = new JPanel();
-        LTPanel aPanel = new LTPanel("a =", 10);
-        LTPanel bPanel = new LTPanel("b =", 10);
-        LTPanel cPanel = new LTPanel("c =", 10);
-        JPanel buttonPanel = new JPanel();
-        LTPanel answerPanel = new LTPanel("Answer:", 10);
+        aPanel = new LTPanel("a =", 10);
+        bPanel = new LTPanel("b =", 10);
+        cPanel = new LTPanel("c =", 10);
+        buttonPanel = new JPanel();
+        answerPanel = new LTPanel("Answer:", 10);
 
         frame.add(formulaPanel);
         frame.add(aPanel);
@@ -42,10 +50,7 @@ public class Quadratic {
         JButton calculateButton = new JButton("Calculate");
         calculateButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
-                // Potentially a lot of code here
-                // But just add code to call quadForm
-
-                // YOUR CODE HERE
+                quadForm();
             }
         });
 
@@ -58,7 +63,12 @@ public class Quadratic {
     }
 
     public void quadForm() {
-        // YOUR CODE HERE
+        double a = Double.parseDouble(aPanel.getText());
+        double b = Double.parseDouble(bPanel.getText());
+        double c = Double.parseDouble(cPanel.getText());
+        double desc = Math.pow(b,2)-4*a*c;
+
+        answerPanel.setText(String.valueOf((-b+Math.sqrt(desc))/2*a));
     }
 
     public static void main(String[] args) {
